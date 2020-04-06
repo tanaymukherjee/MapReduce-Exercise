@@ -33,10 +33,7 @@ quux	4
 Another example:
 
 ```
-docker run \
-  -v $(pwd):/usr/local/hadoop/py \
-  -it sequenceiq/hadoop-docker:2.7.1 \
-  /usr/local/hadoop/py/py_runner.sh count
+docker run -v $(pwd):/usr/local/hadoop/py -it sequenceiq/hadoop-docker:2.7.1 /usr/local/hadoop/py/py_runner.sh count
 ```
 (notice the **count** keyword at the end  - corresponds to the folder **count**!)
 
@@ -88,6 +85,7 @@ World   1
 hEllo   1
 wOrld   1
 ```
+(notice the **exercise** keyword at the end of the command corresponds to the folder **exercise**!)
 
 ### B) Using SQL Query:
 A sample database was created and we inserted some values to test the given conditions by running some queries.
