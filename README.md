@@ -20,12 +20,9 @@ Of course, the idea is to add more folders that demonstrate different aggregatio
 3. Run the following
 
 ```
-docker run \
-  -v $(pwd):/usr/local/hadoop/py \
-  -it sequenceiq/hadoop-docker:2.7.1 \
-  /usr/local/hadoop/py/py_runner.sh grep
+docker run -v $(pwd):/usr/local/hadoop/py -it sequenceiq/hadoop-docker:2.7.1 /usr/local/hadoop/py/py_runner.sh basic_grep
 ```
-(notice the **grep** keyword at the end - corresponds to the folder **grep**!)
+(notice the **grep** keyword at the end - corresponds to the folder **basic_grep**!)
 
 expected output:
 
@@ -51,3 +48,81 @@ foo	6
 labs	0
 quux	4
 ```
+
+## Additional Exercises
+
+### A) Using Regex:
+The sample files were changed from the original one in basic_grep/ count to add some words to test for the given conditions.
+
+#### 1. Check for all the words that have "oo" as part of the string
+* ```Command```
+```
+docker run -v $(pwd):/usr/local/hadoop/py -it sequenceiq/hadoop-docker:2.7.1 /usr/local/hadoop/py/py_runner.sh exercise "oo"
+```
+* ```Output```
+```
+foo  6
+```
+
+#### 2. Check for all words that have 'k' in the beginning and 'e' at the end of the string
+* ```Command```
+```
+docker run -v $(pwd):/usr/local/hadoop/py -it sequenceiq/hadoop-docker:2.7.1 /usr/local/hadoop/py/py_runner.sh exercise "^k[a-zA-Z]*e$"
+```
+* ```Output```
+```
+kettle  1
+kite    1
+```
+
+#### 3. Check for all words that have only 'one' capital letters positioned anywhere in the string
+* ```Command```
+```
+docker run -v $(pwd):/usr/local/hadoop/py -it sequenceiq/hadoop-docker:2.7.1 /usr/local/hadoop/py/py_runner.sh exercise "^[a-z]*[A-Z][a-z]*$"
+```
+* ```Output```
+```
+Hello   1
+Tanay   1
+World   1
+hEllo   1
+wOrld   1
+```
+
+### B) Using SQL Query:
+A sample database was created and we inserted some values to test the given conditions by running some queries.
+
+#### 1. Check for all the words that have "oo" as part of the string
+* ```Query```
+```
+SELECT str, count(*) FROM word WHERE str LIKE '%oo%'
+```
+* ```Output```
+```
+[('FooBar',), ('foobar',), ('bookworm',),(3,)]
+```
+
+#### 2. Check for all words that starts with f/F
+* ```Query```
+```
+SELECT Count(*) FROM word WHERE str LIKE 'f%' OR str LIKE 'F%'
+```
+* ```Output```
+```
+[(2,)]
+```
+
+#### 3. Check for all words that have capital letters positioned anywhere in the string
+* ```Command```
+```
+SELECT str, Count(*) FROM word WHERE LOWER(str) != str
+```
+* ```Output```
+```
+[('FooBar', 1)]
+```
+
+## References
+- [Regex in Python](https://docs.python.org/3/library/re.html)
+- [Online Regex checker](https://regex101.com/)
+- [Regex reference for only one capital letter](https://stackoverflow.com/questions/2602993/a-regular-expression-that-will-allow-a-string-with-only-one-capital-letter)
