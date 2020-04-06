@@ -1,0 +1,99 @@
+$ docker run -v $(pwd):/usr/local/hadoop/py -it sequenceiq/hadoop-docker:2.7.1 /usr/local/hadoop/py/py_runner.sh exercise "^[a-z]*[A-Z][a-z]*$"
+/
+Starting sshd:                                             [  OK  ]
+20/04/06 06:28:21 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Starting namenodes on [629edfba0699]
+629edfba0699: starting namenode, logging to /usr/local/hadoop/logs/hadoop-root-namenode-629edfba0699.out
+localhost: starting datanode, logging to /usr/local/hadoop/logs/hadoop-root-datanode-629edfba0699.out
+Starting secondary namenodes [0.0.0.0]
+0.0.0.0: starting secondarynamenode, logging to /usr/local/hadoop/logs/hadoop-root-secondarynamenode-629edfba0699.out
+20/04/06 06:28:40 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+starting yarn daemons
+starting resourcemanager, logging to /usr/local/hadoop/logs/yarn--resourcemanager-629edfba0699.out
+localhost: starting nodemanager, logging to /usr/local/hadoop/logs/yarn-root-nodemanager-629edfba0699.out
+DEPRECATED: Use of this script to execute hdfs command is deprecated.
+Instead use the hdfs command for it.
+
+20/04/06 06:28:47 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Safe mode is OFF
+20/04/06 06:28:53 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+20/04/06 06:28:56 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+20/04/06 06:28:59 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
+20/04/06 06:29:00 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+packageJobJar: [/usr/local/hadoop/py/basic_grep/mapper.py, /usr/local/hadoop/py/basic_grep/reducer.py, /tmp/hadoop-unjar6632799149881414479/] [] /tmp/streamjob6178101785312043119.jar tmpDir=null
+20/04/06 06:29:02 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+20/04/06 06:29:02 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032
+20/04/06 06:29:03 INFO mapred.FileInputFormat: Total input paths to process : 2
+20/04/06 06:29:03 INFO mapreduce.JobSubmitter: number of splits:2
+20/04/06 06:29:04 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1586168926264_0001
+20/04/06 06:29:04 INFO impl.YarnClientImpl: Submitted application application_1586168926264_0001
+20/04/06 06:29:04 INFO mapreduce.Job: The url to track the job: http://629edfba0699:8088/proxy/application_1586168926264_0001/
+20/04/06 06:29:04 INFO mapreduce.Job: Running job: job_1586168926264_0001
+20/04/06 06:29:15 INFO mapreduce.Job: Job job_1586168926264_0001 running in uber mode : false
+20/04/06 06:29:15 INFO mapreduce.Job:  map 0% reduce 0%
+20/04/06 06:29:25 INFO mapreduce.Job:  map 100% reduce 0%
+20/04/06 06:29:33 INFO mapreduce.Job:  map 100% reduce 100%
+20/04/06 06:29:33 INFO mapreduce.Job: Job job_1586168926264_0001 completed successfully
+20/04/06 06:29:33 INFO mapreduce.Job: Counters: 49
+        File System Counters
+                FILE: Number of bytes read=244
+                FILE: Number of bytes written=358108
+                FILE: Number of read operations=0
+                FILE: Number of large read operations=0
+                FILE: Number of write operations=0
+                HDFS: Number of bytes read=349
+                HDFS: Number of bytes written=40
+                HDFS: Number of read operations=9
+                HDFS: Number of large read operations=0
+                HDFS: Number of write operations=2
+        Job Counters
+                Launched map tasks=2
+                Launched reduce tasks=1
+                Data-local map tasks=2
+                Total time spent by all maps in occupied slots (ms)=15693
+                Total time spent by all reduces in occupied slots (ms)=5018
+                Total time spent by all map tasks (ms)=15693
+                Total time spent by all reduce tasks (ms)=5018
+                Total vcore-seconds taken by all map tasks=15693
+                Total vcore-seconds taken by all reduce tasks=5018
+                Total megabyte-seconds taken by all map tasks=16069632
+                Total megabyte-seconds taken by all reduce tasks=5138432
+        Map-Reduce Framework
+                Map input records=2
+                Map output records=26
+                Map output bytes=186
+                Map output materialized bytes=250
+                Input split bytes=214
+                Combine input records=0
+                Combine output records=0
+                Reduce input groups=16
+                Reduce shuffle bytes=250
+                Reduce input records=26
+                Reduce output records=5
+                Spilled Records=52
+                Shuffled Maps =2
+                Failed Shuffles=0
+                Merged Map outputs=2
+                GC time elapsed (ms)=148
+                CPU time spent (ms)=2940
+                Physical memory (bytes) snapshot=682430464
+                Virtual memory (bytes) snapshot=2187874304
+                Total committed heap usage (bytes)=491782144
+        Shuffle Errors
+                BAD_ID=0
+                CONNECTION=0
+                IO_ERROR=0
+                WRONG_LENGTH=0
+                WRONG_MAP=0
+                WRONG_REDUCE=0
+        File Input Format Counters
+                Bytes Read=135
+        File Output Format Counters
+                Bytes Written=40
+20/04/06 06:29:33 INFO streaming.StreamJob: Output directory: /usr/local/hadoop/py-output
+20/04/06 06:29:35 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Hello   1
+Tanay   1
+World   1
+hEllo   1
+wOrld   1
